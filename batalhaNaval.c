@@ -22,12 +22,36 @@ int main() {
             printf("Posição inválida\n");
             break;
         }
-        if (Tabuleiro[i][8] == 3){ // validação de sobreposição de navios simplificada. Msg de erro será exibida e tabuleiro será imprimido com apenas o primeiro navio
+        if (Tabuleiro[i][8] == 3){ // validação de sobreposição de navios simplificada. Ela chega a imprimir as posições sem sobreposição, porém quando existe uma sobreposição, ele para de alocar as demais posições e informa o erro. Em seguida imprime as posições.
             printf("Navios sobrepostos!\n");
             break;
         }
         Tabuleiro[i][8] = 3;
     }
+
+    for (int i=4; i<7; i++){ //atribuindo posição na diagonal de E5 a G7
+        if (i<0 || i>9){ // validação de posição válida
+            printf("Posição inválida\n");
+            break;
+        }
+        if (Tabuleiro[i][i] == 3){ // validação de sobreposição de navios simplificada. Ela chega a imprimir as posições sem sobreposição, porém quando existe uma sobreposição, ele para de alocar as demais posições e informa o erro. Em seguida imprime as posições.
+            printf("Navios sobrepostos!\n");
+            break;
+        }
+        Tabuleiro[i][i] = 3;
+    }
+
+    for (int i=8, j=1; i>5 && j<4; i--, j++) { //atribuindo posição na diagonal de B9 a D7. Trabalhando com loop complexo ao invés de aninhado.
+        if (i<0 || i>9 || j<0 || j>9){ // validação de posição válida
+            printf("Posição inválida\n");
+            break;
+        }
+        if (Tabuleiro[i][j] == 3){ // validação de sobreposição de navios simplificada. Ela chega a imprimir as posições sem sobreposição, porém quando existe uma sobreposição, ele para de alocar as demais posições e informa o erro. Em seguida imprime as posições.
+            printf("Navios sobrepostos!\n");
+            break;
+        }
+        Tabuleiro[i][j] = 3;
+    }      
 
     printf("   |"); // imprimindo espaço e demarcador da matriz
     for (int i = 65; i<75; i++) { // utilizando a tabela ASCII para imprimir as letras
@@ -47,32 +71,5 @@ int main() {
         }
         printf("\n");
     }
-    
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
-
     return 0;
 }
